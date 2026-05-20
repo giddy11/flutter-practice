@@ -1,12 +1,13 @@
-class Food {
-  String name;
-  int price;
-  String category;
+import 'enums.dart';
+import 'menu_item.dart';
+
+class Food extends MenuItem {
   String size;
 
-  Food(this.name, this.price, this.category, this.size);
+  Food(String name, double price, FoodCategory category, this.size) : super(name, price, category);
 
-    void displayItem(){
-    print("Item Name: ${name}.\nCategory: ${category}.\nPrice: ${price}.");
+  void displayItem() {
+    super.displayItem();
+    print("Size: ${size}.");
   }
 }

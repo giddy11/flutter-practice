@@ -1,14 +1,20 @@
+import 'enums.dart';
+
 class MenuItem {
   // properties
-  String name;
-  int price;
-  String category;
+  String _name;
+  double _price;
+  FoodCategory _category;
+
+  String get name => _name;
+  double get price => _price;
+  FoodCategory get category => _category;
 
   // Constructors
-  MenuItem(this.name, this.price, this.category);
+  MenuItem(this._name, this._price, this._category);
 
   void displayItem(){
-    print("Item Name: ${name}.\nCategory: ${category}.\nPrice: ${price}.");
+    print("Item Name: ${_name}.\nCategory: ${_category}.\nPrice: ${_price}.");
   }
 
 }

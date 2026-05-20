@@ -180,3 +180,6 @@ Create a repository on your Github account
 Add and Push your file changes to your GitHub repository and submit the repository URL
 
 Ensure your repository is set to public so anyone with the link can view it
+
+
+Encapsulation and Data hiding
