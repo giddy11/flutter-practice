@@ -1,6 +1,7 @@
 import 'enums.dart';
 import 'menu_item.dart';
 
+// The restaurant drinks available
 class Drink extends MenuItem {
   String size;
   bool isCold;
