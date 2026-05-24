@@ -6,6 +6,7 @@ class Food extends MenuItem {
 
   Food(String name, double price, FoodCategory category, this.size) : super(name, price, category);
 
+  @override
   void displayItem() {
     super.displayItem();
     print("Size: ${size}.");
