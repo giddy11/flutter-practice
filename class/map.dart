@@ -36,4 +36,16 @@ main(){
   countryCodes.forEach((key, value) {
     print("Key: $key, Value: $value");
   });
+
+  Map<String, double> prices = {
+    "Milk": 10.99,
+    "Bread": 2.99,
+    "Eggs": 3.99,
+    "Chicken": 7.99,
+  };
+
+  //Iterating through the prices map
+  prices.forEach((key, value) {
+    print("Key: $key, Value: ${value.toStringAsFixed(1)}");
+  });
 }
