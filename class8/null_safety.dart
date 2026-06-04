@@ -18,13 +18,11 @@ void main() {
   String finalName = anotherNullableName ?? defaultName;
   print("Final Name: $finalName");
 
-  //Using the null-aware access operator (?.) to safely access a property of a nullable variable
   int? nameLength = nullableName?.length;
   print("Length of Nullable Name: $nameLength");
 
 
   //! operator is used to assert that a value is not null. It will throw an error if the value is null.
-  String nonNullName = nullableName!; // This will throw an error because nullableName
   //is null. Uncommenting the line below will cause a runtime error.
 
   //Null safe that wont throw a runtime error
