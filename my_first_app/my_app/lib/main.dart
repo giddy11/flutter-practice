@@ -487,8 +487,757 @@ class _MyHomePageState extends State<MyHomePage> {
 
                     const SizedBox(height: 20),
 
-                    //here
-                    
+                    // The Recipe Card is a widget that displays a recipe with an image, title, chef's name, rating, cooking time, and a bookmark icon. The card is designed with rounded corners and a shadow effect to create a visually appealing layout. The background image of the card is displayed using an Image.network widget, which loads the image from a URL. A gradient overlay is added on top of the image to enhance readability of the text and icons. The rating is displayed in a small container at the top right corner of the card, while the title and chef's name are positioned at the bottom left corner. The cooking time and bookmark icon are placed side by side at the bottom right corner of the card. Overall, this design creates an attractive and informative recipe card that can be used in various applications to showcase recipes effectively.
+                    Container(
+                      height: 200,
+                      margin: const EdgeInsets.symmetric(horizontal: 25),
+                      decoration: BoxDecoration(
+                        // color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(18),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.15),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      // ClipRRect is a widget that clips its child using a rounded rectangle. It is commonly used to create rounded corners for images or other widgets. In this case, it is used to clip the image of the recipe card, giving it rounded corners with a radius of 18 pixels. This helps to create a visually appealing design for the recipe card, making it look more polished and professional.
+
+                      // Stack is a widget that allows you to stack multiple children on top of each other. It is useful for creating complex layouts where you want to overlay widgets or position them relative to each other. In this case, it is used to stack the background image of the recipe card and any additional content (such as text or icons) that may be added on top of the image. The fit: StackFit.expand property ensures that the children of the Stack will expand to fill the available space, allowing the background image to cover the entire area of the recipe card.
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(18),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            // ── Background image
+                            Image.network(
+                              'https://images.unsplash.com/photo-1544025162-d76694265947?w=700&fit=crop',
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, __, ___) =>
+                                  Container(color: Colors.grey[300]),
+                            ),
+
+                            DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  stops: const [0.0, 0.45, 1.0],
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.black.withOpacity(0.1),
+                                    Colors.black.withOpacity(0.75),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            Positioned(
+                              top: 12,
+                              right: 12,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 5,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFC107),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(
+                                      Icons.star_rounded,
+                                      size: 13,
+                                      color: Colors.white,
+                                    ),
+                                    const SizedBox(width: 3),
+                                    Text(
+                                      4.0.toStringAsFixed(1),
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            Positioned(
+                              left: 14,
+                              right: 14,
+                              bottom: 14,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  // Title + Chef
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      // mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          'Traditional spare ribs baked',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                            height: 1.3,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 3),
+                                        Text(
+                                          'By Chef John',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.white70,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  // Time + Bookmark side-by-side
+                                  Row(
+                                    // Why do we have mainAxisSize: MainAxisSize.min here? The mainAxisSize: MainAxisSize.min property is used to make the Row take up only as much horizontal space as its children need, rather than expanding to fill the available width. This is important in this case because we want the time and bookmark icons to be positioned closely together on the right side of the card, without taking up unnecessary space. By setting mainAxisSize to MainAxisSize.min, we ensure that the Row will only be as wide as the combined width of the time and bookmark widgets, allowing for a more compact and visually appealing layout.
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.black.withOpacity(0.4),
+                                          borderRadius: BorderRadius.circular(
+                                            20,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Icon(
+                                              Icons.timer_outlined,
+                                              size: 13,
+                                              color: Colors.white,
+                                            ),
+                                            const SizedBox(width: 4),
+                                            Text(
+                                              '20 min',
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      GestureDetector(
+                                        // onTap: onTap,
+                                        child: Container(
+                                          width: 32,
+                                          height: 32,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white.withOpacity(
+                                              0.2,
+                                            ),
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Icon(
+                                            Icons.bookmark,
+                                            size: 17,
+                                            color: Colors.white.withOpacity(
+                                              0.9,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        // child: Image.network(
+                        //   'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=200&fit=crop',
+                        //   fit: BoxFit.cover,
+                        // ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    Container(
+                      height: 200,
+                      margin: const EdgeInsets.symmetric(horizontal: 25),
+                      decoration: BoxDecoration(
+                        // color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(18),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.15),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      // ClipRRect is a widget that clips its child using a rounded rectangle. It is commonly used to create rounded corners for images or other widgets. In this case, it is used to clip the image of the recipe card, giving it rounded corners with a radius of 18 pixels. This helps to create a visually appealing design for the recipe card, making it look more polished and professional.
+
+                      // Stack is a widget that allows you to stack multiple children on top of each other. It is useful for creating complex layouts where you want to overlay widgets or position them relative to each other. In this case, it is used to stack the background image of the recipe card and any additional content (such as text or icons) that may be added on top of the image. The fit: StackFit.expand property ensures that the children of the Stack will expand to fill the available space, allowing the background image to cover the entire area of the recipe card.
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(18),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            // ── Background image
+                            Image.network(
+                              'https://images.unsplash.com/photo-1544025162-d76694265947?w=700&fit=crop',
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, __, ___) =>
+                                  Container(color: Colors.grey[300]),
+                            ),
+
+                            DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  stops: const [0.0, 0.45, 1.0],
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.black.withOpacity(0.1),
+                                    Colors.black.withOpacity(0.75),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            Positioned(
+                              top: 12,
+                              right: 12,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 5,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFC107),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(
+                                      Icons.star_rounded,
+                                      size: 13,
+                                      color: Colors.white,
+                                    ),
+                                    const SizedBox(width: 3),
+                                    Text(
+                                      4.0.toStringAsFixed(1),
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            Positioned(
+                              left: 14,
+                              right: 14,
+                              bottom: 14,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  // Title + Chef
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      // mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          'Traditional spare ribs baked',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                            height: 1.3,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 3),
+                                        Text(
+                                          'By Chef John',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.white70,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  // Time + Bookmark side-by-side
+                                  Row(
+                                    // Why do we have mainAxisSize: MainAxisSize.min here? The mainAxisSize: MainAxisSize.min property is used to make the Row take up only as much horizontal space as its children need, rather than expanding to fill the available width. This is important in this case because we want the time and bookmark icons to be positioned closely together on the right side of the card, without taking up unnecessary space. By setting mainAxisSize to MainAxisSize.min, we ensure that the Row will only be as wide as the combined width of the time and bookmark widgets, allowing for a more compact and visually appealing layout.
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.black.withOpacity(0.4),
+                                          borderRadius: BorderRadius.circular(
+                                            20,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Icon(
+                                              Icons.timer_outlined,
+                                              size: 13,
+                                              color: Colors.white,
+                                            ),
+                                            const SizedBox(width: 4),
+                                            Text(
+                                              '20 min',
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      GestureDetector(
+                                        // onTap: onTap,
+                                        child: Container(
+                                          width: 32,
+                                          height: 32,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white.withOpacity(
+                                              0.2,
+                                            ),
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Icon(
+                                            Icons.bookmark,
+                                            size: 17,
+                                            color: Colors.white.withOpacity(
+                                              0.9,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        // child: Image.network(
+                        //   'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=200&fit=crop',
+                        //   fit: BoxFit.cover,
+                        // ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    Container(
+                      height: 200,
+                      margin: const EdgeInsets.symmetric(horizontal: 25),
+                      decoration: BoxDecoration(
+                        // color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(18),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.15),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      // ClipRRect is a widget that clips its child using a rounded rectangle. It is commonly used to create rounded corners for images or other widgets. In this case, it is used to clip the image of the recipe card, giving it rounded corners with a radius of 18 pixels. This helps to create a visually appealing design for the recipe card, making it look more polished and professional.
+
+                      // Stack is a widget that allows you to stack multiple children on top of each other. It is useful for creating complex layouts where you want to overlay widgets or position them relative to each other. In this case, it is used to stack the background image of the recipe card and any additional content (such as text or icons) that may be added on top of the image. The fit: StackFit.expand property ensures that the children of the Stack will expand to fill the available space, allowing the background image to cover the entire area of the recipe card.
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(18),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            // ── Background image
+                            Image.network(
+                              'https://images.unsplash.com/photo-1544025162-d76694265947?w=700&fit=crop',
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, __, ___) =>
+                                  Container(color: Colors.grey[300]),
+                            ),
+
+                            DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  stops: const [0.0, 0.45, 1.0],
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.black.withOpacity(0.1),
+                                    Colors.black.withOpacity(0.75),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            Positioned(
+                              top: 12,
+                              right: 12,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 5,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFC107),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(
+                                      Icons.star_rounded,
+                                      size: 13,
+                                      color: Colors.white,
+                                    ),
+                                    const SizedBox(width: 3),
+                                    Text(
+                                      4.0.toStringAsFixed(1),
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            Positioned(
+                              left: 14,
+                              right: 14,
+                              bottom: 14,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  // Title + Chef
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      // mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          'Traditional spare ribs baked',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                            height: 1.3,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 3),
+                                        Text(
+                                          'By Chef John',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.white70,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  // Time + Bookmark side-by-side
+                                  Row(
+                                    // Why do we have mainAxisSize: MainAxisSize.min here? The mainAxisSize: MainAxisSize.min property is used to make the Row take up only as much horizontal space as its children need, rather than expanding to fill the available width. This is important in this case because we want the time and bookmark icons to be positioned closely together on the right side of the card, without taking up unnecessary space. By setting mainAxisSize to MainAxisSize.min, we ensure that the Row will only be as wide as the combined width of the time and bookmark widgets, allowing for a more compact and visually appealing layout.
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.black.withOpacity(0.4),
+                                          borderRadius: BorderRadius.circular(
+                                            20,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Icon(
+                                              Icons.timer_outlined,
+                                              size: 13,
+                                              color: Colors.white,
+                                            ),
+                                            const SizedBox(width: 4),
+                                            Text(
+                                              '20 min',
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      GestureDetector(
+                                        // onTap: onTap,
+                                        child: Container(
+                                          width: 32,
+                                          height: 32,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white.withOpacity(
+                                              0.2,
+                                            ),
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Icon(
+                                            Icons.bookmark,
+                                            size: 17,
+                                            color: Colors.white.withOpacity(
+                                              0.9,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        // child: Image.network(
+                        //   'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=200&fit=crop',
+                        //   fit: BoxFit.cover,
+                        // ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    //
+                    Container(
+                      height: 200,
+                      margin: const EdgeInsets.symmetric(horizontal: 25),
+                      decoration: BoxDecoration(
+                        // color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(18),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.15),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      // ClipRRect is a widget that clips its child using a rounded rectangle. It is commonly used to create rounded corners for images or other widgets. In this case, it is used to clip the image of the recipe card, giving it rounded corners with a radius of 18 pixels. This helps to create a visually appealing design for the recipe card, making it look more polished and professional.
+
+                      // Stack is a widget that allows you to stack multiple children on top of each other. It is useful for creating complex layouts where you want to overlay widgets or position them relative to each other. In this case, it is used to stack the background image of the recipe card and any additional content (such as text or icons) that may be added on top of the image. The fit: StackFit.expand property ensures that the children of the Stack will expand to fill the available space, allowing the background image to cover the entire area of the recipe card.
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(18),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            // ── Background image
+                            Image.network(
+                              'https://images.unsplash.com/photo-1544025162-d76694265947?w=700&fit=crop',
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, __, ___) =>
+                                  Container(color: Colors.grey[300]),
+                            ),
+
+                            DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  stops: const [0.0, 0.45, 1.0],
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.black.withOpacity(0.1),
+                                    Colors.black.withOpacity(0.75),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            Positioned(
+                              top: 12,
+                              right: 12,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 5,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFC107),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(
+                                      Icons.star_rounded,
+                                      size: 13,
+                                      color: Colors.white,
+                                    ),
+                                    const SizedBox(width: 3),
+                                    Text(
+                                      4.0.toStringAsFixed(1),
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            Positioned(
+                              left: 14,
+                              right: 14,
+                              bottom: 14,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  // Title + Chef
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      // mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          'Traditional spare ribs baked',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                            height: 1.3,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 3),
+                                        Text(
+                                          'By Chef John',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.white70,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  // Time + Bookmark side-by-side
+                                  Row(
+                                    // Why do we have mainAxisSize: MainAxisSize.min here? The mainAxisSize: MainAxisSize.min property is used to make the Row take up only as much horizontal space as its children need, rather than expanding to fill the available width. This is important in this case because we want the time and bookmark icons to be positioned closely together on the right side of the card, without taking up unnecessary space. By setting mainAxisSize to MainAxisSize.min, we ensure that the Row will only be as wide as the combined width of the time and bookmark widgets, allowing for a more compact and visually appealing layout.
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.black.withOpacity(0.4),
+                                          borderRadius: BorderRadius.circular(
+                                            20,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Icon(
+                                              Icons.timer_outlined,
+                                              size: 13,
+                                              color: Colors.white,
+                                            ),
+                                            const SizedBox(width: 4),
+                                            Text(
+                                              '20 min',
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      GestureDetector(
+                                        // onTap: onTap,
+                                        child: Container(
+                                          width: 32,
+                                          height: 32,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white.withOpacity(
+                                              0.2,
+                                            ),
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Icon(
+                                            Icons.bookmark,
+                                            size: 17,
+                                            color: Colors.white.withOpacity(
+                                              0.9,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        // child: Image.network(
+                        //   'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=200&fit=crop',
+                        //   fit: BoxFit.cover,
+                        // ),
+                      ),
+                    ),                  
                   ],
                 ),
               ),
@@ -525,12 +1274,12 @@ class _MyHomePageState extends State<MyHomePage> {
       //     ],
       //   ),
       // ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.amber,
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add, color: Colors.black),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.amber,
+      //   onPressed: _incrementCounter,
+      //   tooltip: 'Increment',
+      //   child: const Icon(Icons.add, color: Colors.black),
+      // ),
     );
   }
 }
