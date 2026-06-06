@@ -209,7 +209,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   // ),
                                   child: const CircleAvatar(
                                     // radius: 40,
-                                    backgroundImage: NetworkImage('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=200&h=200&fit=crop'),
+                                    backgroundImage: NetworkImage(
+                                      'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=200&h=200&fit=crop',
+                                    ),
                                   ),
                                 ),
                                 SizedBox(
@@ -362,27 +364,131 @@ class _MyHomePageState extends State<MyHomePage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Recipes',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _selectedTab = 0;
+                                });
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 7,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: _selectedTab == 0
+                                      ? const Color(0xFF3DAA6E)
+                                      : Colors.white,
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(
+                                    color: const Color(
+                                      0xFF3DAA6E,
+                                    ).withOpacity(0.2),
+                                    width: 1.5,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Recipe',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: _selectedTab == 0
+                                          ? Colors.white
+                                          : const Color(0xFF3DAA6E),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                          Text(
-                            'See all',
-                            style: TextStyle(
-                              fontSize: 13.5,
-                              color: Color(0xFF3DAA6E),
-                              fontWeight: FontWeight.bold,
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _selectedTab = 1;
+                                });
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 7,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: _selectedTab == 1
+                                      ? const Color(0xFF3DAA6E)
+                                      : Colors.white,
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(
+                                    color: const Color(
+                                      0xFF3DAA6E,
+                                    ).withOpacity(0.2),
+                                    width: 1.5,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Videos',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: _selectedTab == 1
+                                          ? Colors.white
+                                          : const Color(0xFF3DAA6E),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _selectedTab = 2;
+                                });
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 7,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: _selectedTab == 2
+                                      ? const Color(0xFF3DAA6E)
+                                      : Colors.white,
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(
+                                    color: const Color(
+                                      0xFF3DAA6E,
+                                    ).withOpacity(0.2),
+                                    width: 1.5,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Tag',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: _selectedTab == 2
+                                          ? Colors.white
+                                          : const Color(0xFF3DAA6E),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ],
                       ),
-                    )
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    //here
+                    
                   ],
                 ),
               ),
